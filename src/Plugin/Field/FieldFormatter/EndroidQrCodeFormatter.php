@@ -11,6 +11,7 @@ namespace Drupal\endroid_qr_code\Plugin\Field\FieldFormatter;
 use Drupal\Core\Field\FormatterBase;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\endroid_qr_code\Response\QRImageResponse;
+use Drupal\Core\Url;
 
 /**
  * Plugin implementation of the 'endroid_qr_code' formatter.
@@ -28,7 +29,7 @@ class EndroidQrCodeFormatter extends FormatterBase {
   /**
    * {@inheritdoc}
    */
-  public function settingsSummary(): array {
+  public function settingsSummary() {
     $summary = [];
     $summary[] = $this->t('Displays the generated Qr Code.');
     return $summary;
@@ -37,16 +38,19 @@ class EndroidQrCodeFormatter extends FormatterBase {
   /**
    * {@inheritdoc}
    */
-  public function viewElements(FieldItemListInterface $items, $langcode): array {
+  public function viewElements(FieldItemListInterface $items, $langcode) {
     $element = [];
     foreach ($items as $delta => $item) {
       // Render each element as markup.
-      $element[$delta] = [
-        '#theme' => 'image',
-        '#uri' => '/image-qr-generate/' . $this->value,
-        '#attributes' => array('class' => 'module-name-center-image'),
-      ];
+      if (!$item->isEmpty()) {
+        $element[$delta] = [
+          '#theme' => 'image',
+          '#uri' => Url::fromRoute('endroid_qr_code.qr.generator', ['content' => $item->getValue()['value']])->toString(),
+          '#attributes' => array('class' => 'module-name-center-image'),
+        ];
+      }
     }
+
     return $element;
   }
 

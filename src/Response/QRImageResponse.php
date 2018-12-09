@@ -47,9 +47,9 @@ class QRImageResponse extends Response {
     public function __construct($content, $logoWidth, $logoSize, $logoMargin, $status = 200, $headers = []) {
         parent::__construct(NULL, $status, $headers);
         $this->data = $content;
-        $this->logoWidth = (int)$logoWidth;
-        $this->logoSize = (int)$logoSize;
-        $this->logoMargin = (int)$logoMargin;
+        $this->logoWidth = (NULL !== $logoWidth) ? (int)$logoWidth : 25;
+        $this->logoSize = (NULL !== $logoSize) ? (int)$logoSize : 100;
+        $this->logoMargin = (NULL !== $logoMargin) ? (int)$logoMargin : 10;
     }
 
     /**
@@ -84,9 +84,9 @@ class QRImageResponse extends Response {
         $logoPath = drupal_get_path('module', 'endroid_qr_code') . '/images/Jugaad-logo.jpg';
         $qrCode = new QrCode($string);
         $qrCode->setLogoPath($logoPath);
-        $qrCode->setLogoWidth((NULL !== $this->logoWidth) ? $this->logoWidth : 150);
-        $qrCode->setSize((NULL !== $this->logoSize) ? $this->logoSize : 600);
-        $qrCode->setMargin((NULL !== $this->logoMargin) ? $this->logoMargin : 10);
+        $qrCode->setLogoWidth($this->logoWidth);
+        $qrCode->setSize($this->logoSize);
+        $qrCode->setMargin($this->logoMargin);
         $qrCode->setEncoding('UTF-8');
         $qrCode->setErrorCorrectionLevel(ErrorCorrectionLevel::HIGH);
         $qrCode->setForegroundColor(['r' => 0, 'g' => 0, 'b' => 0, 'a' => 0]);

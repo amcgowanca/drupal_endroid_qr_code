@@ -36,13 +36,14 @@ class QRCodeConfigurationForm extends ConfigFormBase {
       '#title' => $this->t('QR Logo Width'),
       '#default_value' => $config->get('logo_width'),
       '#min' => 25,
-      '#max' => 500
+      '#max' => 500,
+      '#step' => 25
     ];
     $form['set_size'] = [
       '#type' => 'range',
       '#title' => $this->t('QR Size'),
       '#default_value' => $config->get('set_size'),
-      '#min' => 200,
+      '#min' => 100,
       '#max' => 1000,
       '#step' => 100
     ];
