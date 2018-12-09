@@ -47,8 +47,8 @@ class QRImageResponse extends Response {
     public function __construct($content, $logoWidth, $logoSize, $logoMargin, $status = 200, $headers = []) {
         parent::__construct(NULL, $status, $headers);
         $this->data = $content;
-        $this->logoWidth = (NULL !== $logoWidth) ? (int)$logoWidth : 25;
-        $this->logoSize = (NULL !== $logoSize) ? (int)$logoSize : 100;
+        $this->logoWidth = (NULL !== $logoWidth) ? (int)$logoWidth : 150;
+        $this->logoSize = (NULL !== $logoSize) ? (int)$logoSize : 600;
         $this->logoMargin = (NULL !== $logoMargin) ? (int)$logoMargin : 10;
     }
 
@@ -81,7 +81,7 @@ class QRImageResponse extends Response {
      * @return boolean
      */
     private function generateQRCode(string $string = '') {
-        $logoPath = drupal_get_path('module', 'endroid_qr_code') . '/images/Jugaad-logo.jpg';
+        $logoPath = drupal_get_path('module', 'endroid_qr_code') . '/images/logo.jpg';
         $qrCode = new QrCode($string);
         $qrCode->setLogoPath($logoPath);
         $qrCode->setLogoWidth($this->logoWidth);
