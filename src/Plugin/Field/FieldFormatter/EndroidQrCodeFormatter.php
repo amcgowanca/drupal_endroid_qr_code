@@ -10,7 +10,6 @@ namespace Drupal\endroid_qr_code\Plugin\Field\FieldFormatter;
 
 use Drupal\Core\Field\FormatterBase;
 use Drupal\Core\Field\FieldItemListInterface;
-use Drupal\endroid_qr_code\Response\QRImageResponse;
 use Drupal\Core\Url;
 
 /**
@@ -20,7 +19,8 @@ use Drupal\Core\Url;
  *   id = "endroid_qr_code_formatter",
  *   label = @Translation("Endroid Qr Code"),
  *   field_types = {
- *     "qr_code"
+ *     "string",
+ *     "endroid_qr_code"
  *   }
  * )
  */

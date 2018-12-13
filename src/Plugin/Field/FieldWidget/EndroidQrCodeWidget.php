@@ -17,7 +17,8 @@ use Drupal\Core\Form\FormStateInterface;
  *   id = "endroid_qr_code_widget",
  *   label = @Translation("Render text as a QR Code"),
  *   field_types = {
- *     "string"
+ *     "string",
+ *     "endroid_qr_code"
  *   }
  * )
  */

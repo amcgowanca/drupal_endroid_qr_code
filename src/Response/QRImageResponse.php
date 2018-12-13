@@ -88,11 +88,11 @@ class QRImageResponse extends Response {
         $qrCode->setSize($this->logoSize);
         $qrCode->setMargin($this->logoMargin);
         $qrCode->setEncoding('UTF-8');
-        $qrCode->setErrorCorrectionLevel(ErrorCorrectionLevel::HIGH);
+        $qrCode->setErrorCorrectionLevel(new ErrorCorrectionLevel(ErrorCorrectionLevel::HIGH));
         $qrCode->setForegroundColor(['r' => 0, 'g' => 0, 'b' => 0, 'a' => 0]);
         $qrCode->setBackgroundColor(['r' => 255, 'g' => 255, 'b' => 255, 'a' => 0]);
         $qrCode->setRoundBlockSize(true);
-        $qrCode->setValidateResult(true);
+        $qrCode->setValidateResult(false);
         $response = new QrCodeResponse($qrCode); // Create a response object
         if ($response->isOk()) {
             $im = imagecreatefromstring($response->getContent());  // Generate Image.
