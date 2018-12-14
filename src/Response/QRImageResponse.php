@@ -81,7 +81,7 @@ class QRImageResponse extends Response {
      * @return boolean
      */
     private function generateQRCode(string $string = '') {
-        $logoPath = drupal_get_path('module', 'endroid_qr_code') . '/images/logo.jpg';
+        $logoPath = drupal_get_path('module', 'endroid_qr_code') . '/images/symfony.png';
         $qrCode = new QrCode($string);
         $qrCode->setLogoPath($logoPath);
         $qrCode->setLogoWidth($this->logoWidth);
