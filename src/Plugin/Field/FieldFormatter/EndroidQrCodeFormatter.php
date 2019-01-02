@@ -43,9 +43,19 @@ class EndroidQrCodeFormatter extends FormatterBase {
     foreach ($items as $delta => $item) {
       // Render each element as markup.
       if (!$item->isEmpty()) {
+        $data = \Drupal\Component\Utility\UrlHelper::isValid($item->getValue()['value']);
+        if ($data) {
+          $option = [
+            'query' => ['path' => $item->getValue()['value']],
+          ];
+          $uri = Url::fromRoute('endroid_qr_code.qr.url', [], $option)->toString();
+        }
+        else {
+          $uri = Url::fromRoute('endroid_qr_code.qr.generator', ['content' => $item->getValue()['value']])->toString();
+        }
         $element[$delta] = [
           '#theme' => 'image',
-          '#uri' => Url::fromRoute('endroid_qr_code.qr.generator', ['content' => $item->getValue()['value']])->toString(),
+          '#uri' => $uri,
           '#attributes' => array('class' => 'module-name-center-image'),
         ];
       }

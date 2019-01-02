@@ -2,7 +2,10 @@ The Endroid QR Code module enables to generate a QR Code image.
 
 It provides a field formatter, field widget, field type plugin.
 
-Initially it is a text field. But, can be changed in future scope.
+Now, the branch 8.x-2.x is set to have both options,
+  1. Text
+  2. Url
+ Just pass the full url in the field to get QR Image.
 
 =============
 Requirements:

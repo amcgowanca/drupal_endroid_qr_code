@@ -4,6 +4,12 @@ endroid_qr_code.qr.generator:
     _controller: '\Drupal\endroid_qr_code\Controller\QRImageGeneratorController::image'
   requirements:
     _access: 'TRUE'
+endroid_qr_code.qr.url:
+  path: 'image-qr-generate-with-url'
+  defaults:
+    _controller: '\Drupal\endroid_qr_code\Controller\QRImageGeneratorController::withUrl'
+  requirements:
+    _access: 'TRUE'
 endroid_qr_code.admin_settings:
   path: 'admin/config/endroid_qr_code'
   defaults:
