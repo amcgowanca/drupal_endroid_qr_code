@@ -1,11 +1,5 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 namespace Drupal\endroid_qr_code\Plugin\Field\FieldFormatter;
 
 use Drupal\Core\Field\FormatterBase;
@@ -51,7 +45,9 @@ class EndroidQrCodeFormatter extends FormatterBase {
           $uri = Url::fromRoute('endroid_qr_code.qr.url', [], $option)->toString();
         }
         else {
-          $uri = Url::fromRoute('endroid_qr_code.qr.generator', ['content' => $item->getValue()['value']])->toString();
+          $uri = Url::fromRoute('endroid_qr_code.qr.generator', [
+            'content' => $item->getValue()['value']
+          ])->toString();
         }
         $element[$delta] = [
           '#theme' => 'image',

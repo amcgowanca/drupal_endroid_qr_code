@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
 class QRImageGeneratorController extends ControllerBase {
 
   /**
-   * Request stack
+   * Request stack.
    *
    * @var \Symfony\Component\HttpFoundation\RequestStack
    */
@@ -22,7 +22,7 @@ class QRImageGeneratorController extends ControllerBase {
   /**
    * QRImageGeneratorController constructor.
    *
-   * @param RequestStack $request
+   * @param \Symfony\Component\HttpFoundation\RequestStack $request
    */
   public function __construct(RequestStack $request) {
     $this->request = $request;
@@ -51,6 +51,7 @@ class QRImageGeneratorController extends ControllerBase {
    * Will return the response for external url.
    *
    * @return QRImageResponse
+   *   Will return the image response.
    */
   public function withUrl() {
     $externalUrl = $this->request->getCurrentRequest()->query->get('path');
@@ -61,6 +62,7 @@ class QRImageGeneratorController extends ControllerBase {
    * LogoSize.
    *
    * @return int
+   *   Will return the logo size.
    */
   public function getLogoSize() {
     return $this->config('endroid_qr_code.settings')->get('set_size');
@@ -70,6 +72,7 @@ class QRImageGeneratorController extends ControllerBase {
    * LogoWidth.
    *
    * @return int
+   *   Will return the logo width.
    */
   public function getLogoWidth() {
     return $this->config('endroid_qr_code.settings')->get('logo_width');
@@ -78,7 +81,7 @@ class QRImageGeneratorController extends ControllerBase {
   /**
    * LogoMargin.
    *
-   * @return int
+   * @return Will return the logo margin.
    */
   public function getLogoMargin() {
     return $this->config('endroid_qr_code.settings')->get('set_margin');
