@@ -23,6 +23,7 @@ class QRImageGeneratorController extends ControllerBase {
    * QRImageGeneratorController constructor.
    *
    * @param \Symfony\Component\HttpFoundation\RequestStack $request
+   *   Request object to get request params.
    */
   public function __construct(RequestStack $request) {
     $this->request = $request;
@@ -40,7 +41,7 @@ class QRImageGeneratorController extends ControllerBase {
   /**
    * Main method that throw ImageResponse object to generate image.
    *
-   * @return QRImageResponse
+   * @return \Drupal\endroid_qr_code\Response\QRImageRespons
    *   Make a QR image in JPEG format.
    */
   public function image($content) {
@@ -50,7 +51,7 @@ class QRImageGeneratorController extends ControllerBase {
   /**
    * Will return the response for external url.
    *
-   * @return QRImageResponse
+   * @return \Drupal\endroid_qr_code\Response\QRImageRespons
    *   Will return the image response.
    */
   public function withUrl() {
@@ -81,7 +82,8 @@ class QRImageGeneratorController extends ControllerBase {
   /**
    * LogoMargin.
    *
-   * @return Will return the logo margin.
+   * @return int
+   *   Will return the logo margin.
    */
   public function getLogoMargin() {
     return $this->config('endroid_qr_code.settings')->get('set_margin');

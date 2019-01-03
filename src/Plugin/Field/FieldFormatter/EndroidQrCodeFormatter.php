@@ -5,6 +5,7 @@ namespace Drupal\endroid_qr_code\Plugin\Field\FieldFormatter;
 use Drupal\Core\Field\FormatterBase;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Url;
+use Drupal\Component\Utility\UrlHelper;
 
 /**
  * Plugin implementation of the 'endroid_qr_code' formatter.
@@ -37,7 +38,7 @@ class EndroidQrCodeFormatter extends FormatterBase {
     foreach ($items as $delta => $item) {
       // Render each element as markup.
       if (!$item->isEmpty()) {
-        $data = \Drupal\Component\Utility\UrlHelper::isValid($item->getValue()['value']);
+        $data = UrlHelper::isValid($item->getValue()['value']);
         if ($data) {
           $option = [
             'query' => ['path' => $item->getValue()['value']],
@@ -46,13 +47,13 @@ class EndroidQrCodeFormatter extends FormatterBase {
         }
         else {
           $uri = Url::fromRoute('endroid_qr_code.qr.generator', [
-            'content' => $item->getValue()['value']
+            'content' => $item->getValue()['value'],
           ])->toString();
         }
         $element[$delta] = [
           '#theme' => 'image',
           '#uri' => $uri,
-          '#attributes' => array('class' => 'module-name-center-image'),
+          '#attributes' => ['class' => 'module-name-center-image'],
         ];
       }
     }

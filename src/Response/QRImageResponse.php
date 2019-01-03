@@ -88,7 +88,6 @@ class QRImageResponse extends Response {
    *
    * @param string $string
    *   String to be converted to Qr Code.
-   *   
    */
   private function generateQrCode(string $string = '') {
     $logoPath = drupal_get_path('module', 'endroid_qr_code') . '/images/symfony.png';
