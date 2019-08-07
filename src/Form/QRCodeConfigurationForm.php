@@ -20,15 +20,6 @@ class QRCodeConfigurationForm extends ConfigFormBase {
   /**
    * {@inheritdoc}
    */
-  protected function getEditableConfigNames() {
-    return [
-      'endroid_qr_code.settings',
-    ];
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function buildForm(array $form, FormStateInterface $form_state) {
     $config = $this->config('endroid_qr_code.settings');
     $form['logo_width'] = [
@@ -55,6 +46,7 @@ class QRCodeConfigurationForm extends ConfigFormBase {
       '#max' => 200,
       '#step' => 5,
     ];
+
     return parent::buildForm($form, $form_state);
   }
 
@@ -69,6 +61,15 @@ class QRCodeConfigurationForm extends ConfigFormBase {
       ->set('set_margin', (int) $values['set_margin'])
       ->save();
     parent::submitForm($form, $form_state);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function getEditableConfigNames() {
+    return [
+      'endroid_qr_code.settings',
+    ];
   }
 
 }

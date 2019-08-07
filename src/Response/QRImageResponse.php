@@ -2,11 +2,11 @@
 
 namespace Drupal\endroid_qr_code\Response;
 
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Endroid\QrCode\ErrorCorrectionLevel;
 use Endroid\QrCode\QrCode;
 use Endroid\QrCode\Response\QrCodeResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Response which is returned as the QR code.
@@ -16,39 +16,35 @@ use Endroid\QrCode\Response\QrCodeResponse;
 class QRImageResponse extends Response {
 
   /**
+   * Recourse with generated image.
+   *
+   * @var resource
+   */
+  protected $image;
+  /**
    * Data to be used.
    *
    * @var data
    */
   private $data;
-
   /**
    * Logo width.
    *
    * @var logoWidth
    */
   private $logoWidth;
-
   /**
    * Logo Size.
    *
    * @var logoSize
    */
   private $logoSize;
-
   /**
    * Logo margin.
    *
    * @var logoMargin
    */
   private $logoMargin;
-
-  /**
-   * Recourse with generated image.
-   *
-   * @var resource
-   */
-  protected $image;
 
   /**
    * {@inheritdoc}
@@ -73,6 +69,7 @@ class QRImageResponse extends Response {
    */
   public function sendHeaders() {
     $this->headers->set('content-type', 'image/jpeg');
+
     return parent::sendHeaders();
   }
 

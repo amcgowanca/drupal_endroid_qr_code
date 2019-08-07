@@ -21,6 +21,18 @@ use Drupal\Core\Form\FormStateInterface;
 class EndroidQrCodeWidget extends WidgetBase {
 
   /**
+   * Validate the color text field.
+   */
+  public static function validate($element, FormStateInterface $form_state) {
+    $value = $element['#value'];
+    if (strlen($value) == 0) {
+      $form_state->setValueForElement($element, '');
+
+      return;
+    }
+  }
+
+  /**
    * {@inheritdoc}
    */
   public function formElement(FieldItemListInterface $items, $delta, array $element, array &$form, FormStateInterface $form_state) {
@@ -31,21 +43,11 @@ class EndroidQrCodeWidget extends WidgetBase {
       '#size' => 64,
       '#maxlength' => 64,
       '#element_validate' => [
-          [static::class, 'validate'],
+        [static::class, 'validate'],
       ],
     ];
-    return ['value' => $element];
-  }
 
-  /**
-   * Validate the color text field.
-   */
-  public static function validate($element, FormStateInterface $form_state) {
-    $value = $element['#value'];
-    if (strlen($value) == 0) {
-      $form_state->setValueForElement($element, '');
-      return;
-    }
+    return ['value' => $element];
   }
 
 }

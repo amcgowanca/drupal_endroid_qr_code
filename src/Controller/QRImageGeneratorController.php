@@ -2,8 +2,8 @@
 
 namespace Drupal\endroid_qr_code\Controller;
 
-use Drupal\endroid_qr_code\Response\QRImageResponse;
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\endroid_qr_code\Response\QRImageResponse;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 
@@ -49,14 +49,13 @@ class QRImageGeneratorController extends ControllerBase {
   }
 
   /**
-   * Will return the response for external url.
+   * LogoWidth.
    *
-   * @return \Drupal\endroid_qr_code\Response\QRImageRespons
-   *   Will return the image response.
+   * @return int
+   *   Will return the logo width.
    */
-  public function withUrl() {
-    $externalUrl = $this->request->getCurrentRequest()->query->get('path');
-    return new QRImageResponse($externalUrl, $this->getLogoWidth(), $this->getLogoSize(), $this->getLogoMargin());
+  public function getLogoWidth() {
+    return $this->config('endroid_qr_code.settings')->get('logo_width');
   }
 
   /**
@@ -70,16 +69,6 @@ class QRImageGeneratorController extends ControllerBase {
   }
 
   /**
-   * LogoWidth.
-   *
-   * @return int
-   *   Will return the logo width.
-   */
-  public function getLogoWidth() {
-    return $this->config('endroid_qr_code.settings')->get('logo_width');
-  }
-
-  /**
    * LogoMargin.
    *
    * @return int
@@ -87,6 +76,18 @@ class QRImageGeneratorController extends ControllerBase {
    */
   public function getLogoMargin() {
     return $this->config('endroid_qr_code.settings')->get('set_margin');
+  }
+
+  /**
+   * Will return the response for external url.
+   *
+   * @return \Drupal\endroid_qr_code\Response\QRImageRespons
+   *   Will return the image response.
+   */
+  public function withUrl() {
+    $externalUrl = $this->request->getCurrentRequest()->query->get('path');
+
+    return new QRImageResponse($externalUrl, $this->getLogoWidth(), $this->getLogoSize(), $this->getLogoMargin());
   }
 
 }

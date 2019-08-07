@@ -38,20 +38,22 @@ class EndroidQrCodeItem extends FieldItemBase {
   /**
    * {@inheritdoc}
    */
-  public function isEmpty() {
-    $value = $this->get('value')->getValue();
-    return $value === NULL || $value === '';
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public static function propertyDefinitions(FieldStorageDefinitionInterface $field_definition) {
     $properties = [];
     $properties['value'] = DataDefinition::create('string')
       ->setLabel(t('Qr Code'))
       ->setRequired(TRUE);
+
     return $properties;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function isEmpty() {
+    $value = $this->get('value')->getValue();
+
+    return $value === NULL || $value === '';
   }
 
 }
