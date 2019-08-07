@@ -21,24 +21,28 @@ class QRImageResponse extends Response {
    * @var resource
    */
   protected $image;
+
   /**
    * Data to be used.
    *
    * @var data
    */
   private $data;
+
   /**
    * Logo width.
    *
    * @var logoWidth
    */
   private $logoWidth;
+
   /**
    * Logo Size.
    *
    * @var logoSize
    */
   private $logoSize;
+
   /**
    * Logo margin.
    *
